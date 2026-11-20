@@ -1,6 +1,7 @@
 package es.cesur.dam.ejercicioevaluableintegrador20112026;
 
 import es.cesur.dam.ejercicioevaluableintegrador20112026.models.Equipo;
+import javafx.beans.property.*;
 import javafx.collections.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -8,29 +9,40 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class HelloController {
     @FXML
-    private TableView tableView;
+    private TableView<Equipo> tableView;
     @FXML
-    private TableColumn ID;
+    private TableColumn<Equipo, String> ID;
     @FXML
-    private TableColumn Nombre;
+    private TableColumn<Equipo, String> Nombre;
     @FXML
-    private TableColumn Categoria;
+    private TableColumn<Equipo, String> Categoria;
     @FXML
-    private TableColumn Disponible;
+    private TableColumn<Equipo, String> Disponible;
 
     public void initialize() {
 
-        ID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        Nombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
-        Categoria.setCellValueFactory(new PropertyValueFactory<>("Categoria"));
-        Disponible.setCellValueFactory(new PropertyValueFactory<>("Disponible"));
-
-        ObservableList<Equipo> listaPrueba = FXCollections.observableArrayList(
-                new Equipo(1, "ThinkPad", "Portátil", true),
-                new Equipo(2, "Lenovo", "Sobremesa", false)
+        ID.setCellValueFactory((row) -> {
+            Equipo equipo = row.getValue();
+            Long id = equipo.getId();
+            return new SimpleStringProperty(String.valueOf(id));
+        });
+        Nombre.setCellValueFactory((row) -> {
+            if (row.getValue().getNombre().isBlank()) {
+                return new SimpleStringProperty("--");
+            } else {
+                return new SimpleStringProperty(String.valueOf(row.getValue().getNombre()));
+            }
+        });
+        Categoria.setCellValueFactory((row) ->
+            new SimpleStringProperty(String.valueOf(row.getValue().getCategoria()).toUpperCase())
         );
+        Disponible.setCellValueFactory((row) -> {
+            var availability = row.getValue().getDisponible();
+            String output = availability ? "Disponible" : "No disponible";
+            return new SimpleStringProperty(output);
+        });
 
-        tableView.setItems(listaPrueba);
+        tableView.getItems();
     }
 
 }
