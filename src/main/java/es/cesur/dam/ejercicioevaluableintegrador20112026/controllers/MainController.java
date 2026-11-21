@@ -1,13 +1,11 @@
-package es.cesur.dam.ejercicioevaluableintegrador20112026;
+package es.cesur.dam.ejercicioevaluableintegrador20112026.controllers;
 
 import es.cesur.dam.ejercicioevaluableintegrador20112026.models.Equipo;
 import javafx.beans.property.*;
-import javafx.collections.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 
-public class HelloController {
+public class MainController {
     @FXML
     private TableView<Equipo> tableView;
     @FXML
