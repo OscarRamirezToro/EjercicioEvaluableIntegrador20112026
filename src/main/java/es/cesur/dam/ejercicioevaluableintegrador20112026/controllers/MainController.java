@@ -40,7 +40,7 @@ public class MainController {
             return new SimpleStringProperty(output);
         });
 
-        tableView.getItems();
+        tableView.getItems().addAll(ID, Nombre, Categoria, Disponible);
     }
 
 }
