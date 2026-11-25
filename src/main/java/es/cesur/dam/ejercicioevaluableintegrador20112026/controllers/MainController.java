@@ -7,7 +7,7 @@ import javafx.scene.control.*;
 
 public class MainController {
     @FXML
-    private TableView<Equipo> tableView;
+    public TableView<Equipo> tableView;
     @FXML
     private TableColumn<Equipo, String> ID;
     @FXML
@@ -40,7 +40,6 @@ public class MainController {
             return new SimpleStringProperty(output);
         });
 
-        tableView.getItems().addAll(ID, Nombre, Categoria, Disponible);
     }
 
 }

@@ -5,6 +5,7 @@ module es.cesur.dam.ejercicioevaluableintegrador20112026 {
     requires java.sql;
     requires jakarta.persistence;
     requires org.hibernate.orm.core;
+    requires java.naming;
 
     opens es.cesur.dam.ejercicioevaluableintegrador20112026 to javafx.fxml;
     opens es.cesur.dam.ejercicioevaluableintegrador20112026.models to org.hibernate.orm.core;
