@@ -18,7 +18,8 @@ public class HelloApplication extends Application {
 
         sessionFactory.inSession(session -> {
             session.createQuery("from Equipo", Equipo.class)
-                    .list();
+                    .list()
+                    .forEach(System.out::println);
         });
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("main-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
